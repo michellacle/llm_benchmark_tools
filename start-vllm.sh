@@ -81,7 +81,7 @@ nohup $VLLM_VENV/bin/vllm serve \
   --enable-prefix-caching \
   --reasoning-parser deepseek_r1 \
   --disable-log-stats \
-  2>&1 &>> /tmp/vllm-serve.log &
+  2>&1 &> /tmp/vllm-serve.log &
 
 VLLM_PID=$!
 echo "$VLLM_PID" > "$PID_FILE"

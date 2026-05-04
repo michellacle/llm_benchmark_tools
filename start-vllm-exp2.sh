@@ -4,6 +4,8 @@
 # ===================================================================
 set -euo pipefail
 
+export LD_LIBRARY_PATH=/usr/local/cuda-13.2/targets/x86_64-linux/lib/
+
 # ---- configuration ------------------------------------------------
 VLLM_VENV="/home/michel/venv-vllm-ng"
 MODEL_PATH="/home/michel/models/qwen3.6-27b-fp8"
@@ -78,7 +80,7 @@ nohup $VLLM_VENV/bin/vllm serve \
   --enable-prefix-caching \
   --reasoning-parser qwen3 \
   --disable-log-stats \
-  2>&1 &>> /tmp/vllm-serve.log &
+  2>&1 &> /tmp/vllm-serve.log &
 
 VLLM_PID=$!
 echo "$VLLM_PID" > "$PID_FILE"
